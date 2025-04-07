@@ -5,9 +5,30 @@ from pathlib import Path
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+
+class Enclosure:
+    def __init__(self, name: str, position=[0,0], size=[0.0], color='999999', image_path: Path = None):
+        self.name = name
+        self.position = position
+        self.size = size
+        self.color = color
+        self.image_path = image_path
+        self.s_object = []
+
+    def _assign_smaller_object(self, s_object: object):
+        self.s_object.append(s_object)
+
+### Those subclasses are entirely for easier readability of inventory() code ###
+class Room(Enclosure): 
+    def assign_container_group(self, container_groups: object):
+        super()._assign_smaller_object(container_groups)
+class ContainerGroup(Enclosure): 
+    def assign_container(self, containers: object):
+        super()._assign_smaller_object(containers)
+class Container(Enclosure): 
+    def assign_item(self, item: object):
+        super()._assign_smaller_object(item)
+    
 
 class Item:
     def __init__(self, name: str, quantity = 1, subitems = []):
@@ -38,6 +59,11 @@ def get_subpaths(path: Path) -> list[str]:
     for subpath in path.iterdir():
         subpaths.append(subpath)
     return subpaths
+
+
+@app.route("/")
+def hello_world():
+    return "<p>Hello, World!</p>"
 
 @app.route('/inventory')
 def inventory():
