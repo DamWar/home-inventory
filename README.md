@@ -1,10 +1,14 @@
 A simple program for managing my home's inventory. It uses web UI via Flask.  
 Justification: I want to know in which containers (boxes, shelves, etc.) I store my items and my memory is not good enough.
 
+Demo of current state (WiP ofc):
+
+![demo](./documentation/images/demo-opt.gif)
+
 Containers directory is not included(gitignore) in this project for privacy  
 Example structure:
 
-![structure image](./structure.png)  
+![structure image](./documentation/images/structure.png)  
 \> containers
 - bedroom
     - cabinet
