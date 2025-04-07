@@ -68,21 +68,31 @@ def hello_world():
 
 @app.route('/inventory')
 def inventory():
+    rooms_list = []
+    
     rooms_path = Path('code/containers')
     rooms = get_subpaths(rooms_path)
     for room in rooms: # example: living_room/
         if room.is_dir():
+            room_obj = Room(room.name)
+
             container_groups_path = room
             container_groups = get_subpaths(container_groups_path)
             for container_group in container_groups: # example: cabinet
                 if container_group.is_dir():
+                    container_group_obj = ContainerGroup(container_group.name)
+                    room_obj.assign_container_group(container_group_obj)
+
                     containers_path = container_group
                     containers = get_subpaths(containers_path)
                     for container in containers: # example: shelf_1.csv
                         if container.is_file():
+                            container_obj = Container(container.name)
+                            container_group_obj.assign_container(container_obj)
+
                             items = read_container_csv(container)
                             for item in items: # example: "pen, 1"
-                                print(item.name)
-                                print(item.quantity)
-                                print(item.subitems)
+                                item_obj = Item(item.name)
+                                container_obj.assign_item(item_obj)
+        rooms_list.append(room_obj)
     return 'Placeholder'
