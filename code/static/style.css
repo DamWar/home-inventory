@@ -1,0 +1,35 @@
+#bedroom {
+    background-color: #006000;
+}
+.room {
+    background-color: #999999;
+    position: relative;
+    top: 0vh;
+    left: 0vh;
+    height: 60vh;
+    width: 90%;
+    padding: 10px;
+    margin: 100px;
+}
+.container_group {
+    background-color: #222222;
+    height: 50%;
+    width: 50%;
+}
+.container {
+    background-color: #AAAAAA;
+    height: 40%;
+    width: 30%;
+}
+.item {
+    background-color: #444444;
+    height: 40%;
+    width: 30%;
+}
+.container_group:hover, .container:hover {
+    height: 90%;
+    width: 100%;
+}
+.item:hover {
+    width: 60%;
+}
