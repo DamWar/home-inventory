@@ -99,4 +99,4 @@ def inventory():
                                 item_obj = Item(item.name)
                                 container_obj.assign_item(item_obj)
         rooms_list.append(room_obj)
-    return render_template('base.html', rooms=rooms_list) #rooms contain all other objects
+    return render_template('main.html', rooms=rooms_list) #rooms contain all other objects

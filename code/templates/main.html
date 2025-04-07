@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% for room in rooms %}
+      <div id="{{ room.name }}" class="room">
+        {{ room.name }}</br>
+        {% for container_group in room.s_object %}
+          <div class="container_group">
+            {{ container_group.name }}
+            {% for container in container_group.s_object %}
+              <div class="container">
+                {{ container.name }}
+                {% for item in container.s_object %}
+                  <div class="item">
+                    {{ item.name }}
+                  </div>
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+  {% endfor %}
+{% endblock %}
