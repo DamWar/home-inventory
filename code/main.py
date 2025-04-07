@@ -1,6 +1,6 @@
 #. .venv/bin/activate
 import csv
-from flask import Flask
+from flask import Flask, render_template
 from pathlib import Path
 
 app = Flask(__name__)
@@ -95,4 +95,4 @@ def inventory():
                                 item_obj = Item(item.name)
                                 container_obj.assign_item(item_obj)
         rooms_list.append(room_obj)
-    return 'Placeholder'
+    return render_template('base.html', rooms=rooms_list) #rooms contain all other objects
