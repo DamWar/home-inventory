@@ -70,6 +70,10 @@ def hello_world():
 def inventory():
     rooms_list = []
     
+    ## TODO: Refactor into more universal code, which utilizes Enclosure with each directory and Container with *.csv items
+    ## TODO: Upon refactoring, add self.type to Enclosure (room, etc.)
+    ## Note1: There may be issues with displaying on website, unless very detailed yaml file is provided for each directory, so I'm leaving it for later improvements since I only need current structure
+    ## Note2: It might also not be possible due to jinja2 templates' limitation
     rooms_path = Path('code/containers')
     rooms = get_subpaths(rooms_path)
     for room in rooms: # example: living_room/
