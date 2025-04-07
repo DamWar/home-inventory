@@ -34,7 +34,8 @@ class Item:
     def __init__(self, name: str, quantity = 1, subitems = []):
         self.name = name
         self.quantity = quantity
-        self.subitems = subitems
+        self.subitems = subitems # example: pencil(subitem) inside a small pencils_box(Item) within a big art_box(Container)
+
 
 def read_container_csv(file: str) -> list[object]:
     with open(file, newline='') as csv_file: #I decided to use csv first, since I don't know the final database structure and I'd rather just code right now instead of contemplating my containers' structure
@@ -80,7 +81,7 @@ def inventory():
                     for container in containers: # example: shelf_1.csv
                         if container.is_file():
                             items = read_container_csv(container)
-                            for item in items:
+                            for item in items: # example: "pen, 1"
                                 print(item.name)
                                 print(item.quantity)
                                 print(item.subitems)
