@@ -90,18 +90,23 @@ def inventory():
             for container_group in container_groups: # example: cabinet
                 if container_group.is_dir():
                     container_group_obj = ContainerGroup(container_group.name)
-                    room_obj.assign_container_group(container_group_obj)
 
                     containers_path = container_group
                     containers = get_subpaths(containers_path)
                     for container in containers: # example: shelf_1.csv
                         if container.is_file():
-                            container_obj = Container(container.name)
-                            container_group_obj.assign_container(container_obj)
+                            if container.name == "bg.png": # TODO: (very low priority - efficiency optimization) look for unique files only once, with path generated in above loops, instead of checking every container iteration
+                                container_group_obj.assing_image(containers_path.joinpath("bg.png"))
+                            if container.suffix == ".csv":
+                                container_obj = Container(container.name)
+                                if (container.stem + ".png") in containers: # TODO: check for other image types
+                                    container_obj.assing_image(container.with_suffix(".png")) # TODO: assign correct suffix after considering other image types
+                                container_group_obj.assign_container(container_obj)
 
-                            items = read_container_csv(container)
-                            for item in items: # example: "pen, 1"
-                                item_obj = Item(item.name)
-                                container_obj.assign_item(item_obj)
+                                items = read_container_csv(container)
+                                for item in items: # example: "pen, 1"
+                                    item_obj = Item(item.name)
+                                    container_obj.assign_item(item_obj)
+                    room_obj.assign_container_group(container_group_obj)
         rooms_list.append(room_obj)
     return render_template('main.html', rooms=rooms_list) #rooms contain all other objects
