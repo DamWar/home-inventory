@@ -1,0 +1,18 @@
+{# Same nested loops structure is used in multiple places (at the moment one per html and css) #}
+{# Sharing render_template()'s vartiables is tricky with combination of jinja's extend and include, it might work better with context_processor's but I'm leaving it for later since I don't want to dwell on it right now #}
+{# TODO: Implement this as a form of template/function for repeated uses among other code files #}
+{% for room in rooms %}
+    {% block rooms %}{% endblock %}
+
+    {% for container_group in room.s_object %}
+        {% block container_groups %}{% endblock %}
+
+        {% for container in container_group.s_object %}
+            {% block containers %}{% endblock %}
+
+            {% for item in container.s_object %}
+                {% block items %}{% endblock %}
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+{% endfor %}
