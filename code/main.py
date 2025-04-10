@@ -4,16 +4,21 @@ from flask import Flask, render_template
 from pathlib import Path
 
 app = Flask(__name__)
+default_color = '#FFFFFF'
 
 
 class Enclosure:
-    def __init__(self, name: str, position=[0,0], size=[0.0], color='999999', image_path: Path = None):
+    def __init__(self, name: str):
         self.name = name
+        self.s_object = []
+
+    def assing_image(self, image_path: Path):
+        self.image_path = image_path
+
+    def assign_properties(self, position=[0,0], size=[0,0], color=default_color):
         self.position = position
         self.size = size
         self.color = color
-        self.image_path = image_path
-        self.s_object = []
 
     def _assign_smaller_object(self, s_object: object):
         self.s_object.append(s_object)
