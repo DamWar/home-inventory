@@ -1,0 +1,11 @@
+{% for room in rooms %}
+    {% for container_group in room.s_object %}
+        {% for container in container_group.s_object %}
+            {% for item in container.s_object %}
+                .item {
+                    color: #000090
+                }
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+{% endfor %}

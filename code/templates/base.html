@@ -1,7 +1,11 @@
 <!doctype html>
 <head>
-<title>Home inventory</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css" />
+    <title>Home inventory</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css" />
+    <link rel="stylesheet" href="templates/main.css" type="text/css" />
+    <style>
+        {% include 'style/main.css' %}
+    </style>
 </head>
 <body class="content">
     {% block content %}{% endblock %}
